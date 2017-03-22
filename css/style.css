@@ -1,0 +1,148 @@
+*,
+html {
+    box-sizing: border-box;
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently supported by Chrome and Opera */
+}
+
+body {
+    color: black;
+    font: 14px/150% 'Helvetica Neue', Verdana, sans-serif;
+}
+
+#main-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+#wrapper {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 680px;
+    background: white;
+}
+
+#q-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 16px;
+    line-height: 100px;
+    width: 340px;
+    height: 100px;
+    background: #ccc;
+    border-radius: 5px;
+}
+
+#o,
+#x {
+    cursor: pointer;
+}
+
+#info-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 20px;
+    width: 340px;
+    height: 100px;
+    background: white;
+}
+
+#board-container {
+    margin-top: 50px;
+    display: flex;
+    height: 340px;
+    width: 340px;
+    background: red;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: space-between;
+}
+
+#score-container {
+    width: 340px;
+    height: 340px;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+}
+
+.pick-one {
+    color: white;
+    font-family: monospace;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background: blue;
+}
+
+.field {
+    background: white;
+    width: 100px;
+    height: 100px;
+    line-height: 90px;
+    font-size: 120px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.field:hover {
+    cursor: pointer;
+}
+
+.win {
+    background: blue;
+    color: white;
+}
+
+.pick-df {
+    height: 50%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-around;
+}
+
+.info {
+    height: 50%;
+}
+
+.df {
+    width: 33%;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    border: 5px solid transparent;
+}
+
+.active {
+    border: 5px solid blue;
+}
+
+#easy {
+    background: #eee;
+}
+
+#medium {
+    background: yellow;
+}
+
+#hard {
+    background: red;
+}
