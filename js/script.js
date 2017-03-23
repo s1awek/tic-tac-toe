@@ -42,6 +42,8 @@ $(document).ready(function () {
     //Regardles player's choice 'X' always starts the game
     $('#o').on('click', function () {
         clearBoard();
+        $(this).addClass('active');
+        $('#x').removeClass('active');
         if ((gameArr.indexOf('X') === -1 && gameArr.indexOf('O') === -1)) {
             clicked = 'O';
             play();
@@ -52,6 +54,8 @@ $(document).ready(function () {
 
     $('#x').on('click', function () {
         clearBoard();
+        $(this).addClass('active');
+        $('#o').removeClass('active');
         if ((gameArr.indexOf('X') === -1 && gameArr.indexOf('O') === -1)) {
             clicked = 'X';
             play();
@@ -89,7 +93,7 @@ $(document).ready(function () {
     //I tried to use the Minimax algorithm, but had to give up because my programming skills are not high enough yet :(
     //Moreover, to do so would have to rewrite most of my code from scratch.
     //However - as far as I can tell - my if-else algorithm is just as good as the minimax but it's a lot quicker than MM, so it will do for now.
-    //In addition, with my solution, you can easily set 3 levels of difficulty
+    //In addition, with my solution, one can easily set 3 levels of difficulty
     function returnAIindex() {
         var x = checkIfWin(gameArr, 'X');
         var o = checkIfWin(gameArr, 'O');
@@ -116,14 +120,14 @@ $(document).ready(function () {
             }
         }
 
-        //AI takes corners of the board if available - [all levels]
-        if (gameArr[0] === 0 && ((dl === 'hard') || dl === 'medium')) {
+        //AI takes corners of the board if available - ['HARD' only]
+        if (gameArr[0] === 0 && (dl === 'hard')) {
             return 0;
-        } else if (gameArr[2] === 0 && ((dl === 'hard') || dl === 'medium')) {
+        } else if (gameArr[2] === 0 && dl === 'hard') {
             return 2;
-        } else if (gameArr[6] === 0 && ((dl === 'hard') || dl === 'medium')) {
+        } else if (gameArr[6] === 0 && dl === 'hard') {
             return 6;
-        } else if (gameArr[8] === 0 && ((dl === 'hard') || dl === 'medium')) {
+        } else if (gameArr[8] === 0 && dl === 'hard') {
             return 8;
         }
         //checks if there are still empty fields on the board
@@ -151,7 +155,7 @@ $(document).ready(function () {
     }
 
     function checkIfWin(someArr, r) {
-        flag = false; //this is False Flag ( ͡° ͜ʖ ͡°)
+        flag = false; //this is the false flag ( ͡° ͜ʖ ͡°)
         var arr = [[0, 3, 6], [1, 4, 7], [2, 5, 8], [2, 4, 6], [0, 4, 8], [0, 1, 2], [3, 4, 5], [6, 7, 8]]; //win scenarios
         var hitCounterX = 0;
         var hitCounterO = 0;
@@ -183,7 +187,7 @@ $(document).ready(function () {
                     //if last iteration of both loops won't give win=true and there is no more room on the board, then win='draw'
                 } else if (someArr.indexOf(0) === -1 && i === 7 && j === 2 && (hitCounterO < 3 && hitCounterX < 3) && win != true) {
                     win = 'draw';
-                    //checks if opponent has chance to win in next move and returns index of field to block him if so
+                    //checks if player has chance to win in next move and returns index of field to block him or let him win if so
                 } else if (hitCounterO === 2 && r === 'O' && logO.indexOf(i) === -1) {
                     logO.push(i); //Log for already block win scenarios indexes
                     arrO = arr[i].filter(function (a) {
@@ -220,6 +224,8 @@ $(document).ready(function () {
             gameArr[ind] = sym;
             checkIfWin(gameArr);
             if (win === true) {
+                $('#x').removeClass('active');
+                $('#o').removeClass('active');
                 placeSymbol(indexToId(ind), sym);
                 toggleWinnerLine(0);
                 gameArr = [0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -230,6 +236,8 @@ $(document).ready(function () {
                 flag1 = 0;
                 tempArr = [];
             } else if (win === 'draw') {
+                $('#x').removeClass('active');
+                $('#o').removeClass('active');
                 placeSymbol(indexToId(ind), sym);
                 gameArr = [0, 0, 0, 0, 0, 0, 0, 0, 0];
                 win = false;
